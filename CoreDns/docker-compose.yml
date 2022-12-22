@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  dns:
+    image: coredns/coredns
+    container_name: coredns
+    hostname: ns1.example.net
+    command: -conf /etc/coredns/Corefile
+    volumes:
+      - ./corednsconfig:/etc/coredns
+    restart: unless-stopped
+    ports:
+        - '53:53'
+        - '53:53/udp'
+        - '9153:9153'
